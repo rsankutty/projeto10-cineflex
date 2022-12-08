@@ -87,5 +87,6 @@ const ButtonContainer = styled.div`
         background-color: #E8833A;
         border-radius: 3px;
         border: none;
+        color: white;
     }
 `;
