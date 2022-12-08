@@ -2,17 +2,40 @@ import GlobalStyle from "./style/globalStyles";
 import HomePage from "./components/HomePage/Home";
 import SessionPage from "./components/SessionPage/Session";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import styled from "styled-components";
 
 function App() {
+
   return (
     <BrowserRouter>
       <GlobalStyle />
-			<Routes>
-				<Route path="/" element={<HomePage />} />
-				<Route path="/sessoes/:idFilme" element={<SessionPage />}/>
-			</Routes>
-		</BrowserRouter>
+      <Header>CINEFLEX</Header>
+      <Routes>
+        <Route
+          path="/"
+          element={<HomePage />}
+        />
+        <Route
+          path="/sessoes/:idFilme"
+          element={<SessionPage />}
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
+
+const Header = styled.div`
+  width: 100vw;
+  height: 67px;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #E8833A;
+  font-size: 34px;
+  position: fixed;
+  background-color: #C3CFD9;
+`;
+
 
 export default App;

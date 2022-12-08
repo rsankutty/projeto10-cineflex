@@ -5,9 +5,6 @@ export default function HomePage() {
 
     return (
         <ScreenContainer>
-            <Header>
-                CINEFLEX
-            </Header>
             <ContentHome />
         </ScreenContainer>
     )
@@ -23,15 +20,3 @@ const ScreenContainer = styled.div`
   margin-bottom: 200px;
 `;
 
-const Header = styled.div`
-  width: 100vw;
-  height: 67px;
-  margin: 0px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #E8833A;
-  font-size: 34px;
-  position: fixed;
-  background-color: #C3CFD9;
-`;
