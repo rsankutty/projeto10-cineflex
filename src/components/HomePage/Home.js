@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ContentHome from "./ContentHome";
 
-export default function Home() {
+export default function HomePage() {
 
     return (
         <ScreenContainer>
