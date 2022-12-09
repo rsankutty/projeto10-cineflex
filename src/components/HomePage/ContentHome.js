@@ -66,6 +66,7 @@ const Instruction = styled.div`
   /* background-color: green; */
   margin-top: 50px;
   margin-bottom: 50px;
+  font-family: 'Roboto', sans-serif;
 `;
 
 const MoviesContainer = styled.div`

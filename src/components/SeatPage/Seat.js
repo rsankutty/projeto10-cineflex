@@ -1,42 +1,46 @@
 import styled from "styled-components";
-import ContentSession from "./ContentSession";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import ContentSeat from "./ContentSeat";
 
-export default function SessionPage() {
-  const [movieSession, setMovieSession] = useState([]);
-  const [movieInfo, setMovieInfo] = useState("");
 
-  const { idFilme } = useParams();
+export default function SeatPage() {
+  const [moviesInfo, setMoviesInfo] = useState([]);
+  const [seats, setSeats] = useState([]);
+
+  const { idSessao } = useParams();
 
   useEffect(() => {
     const requisicao = axios.get(
-      `https://mock-api.driven.com.br/api/v8/cineflex/movies/${idFilme}/showtimes`
+      `https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${idSessao}/seats`
     );
 
     requisicao.then((resposta) => {
-      setMovieInfo(resposta.data);
-      setMovieSession(resposta.data.days);
+      setMoviesInfo(resposta.data)
+      setSeats(resposta.data.seats);
       console.log(resposta.data);
     });
-  }, [idFilme]);
+  }, [idSessao]);
 
-  if (movieSession.length === 0) {
+  if (seats.length === 0) {
     return <ContentLoading>Carregando Dados...</ContentLoading>;
   }
 
   return (
     <ScreenContainer>
-      <ContentSession movieSession={movieSession} setMovieSession={setMovieSession}/>
+      <ContentSeat seats={seats} />
       <Footer>
         <SessionSumary>
           <img
-            src={movieInfo.posterURL}
+            src={moviesInfo.movie.posterURL}
             alt=""
           />
         </SessionSumary>
-        <p>{movieInfo.title}</p>
+        <PContainer>
+          <p>{moviesInfo.movie.title}</p>
+          <p>{`${moviesInfo.day.weekday} - ${moviesInfo.name}`}</p>
+        </PContainer>
       </Footer>
     </ScreenContainer>
   );
@@ -77,6 +81,12 @@ const Footer = styled.div`
     font-size: 26px;
     color: #293845;
   }
+`;
+
+const PContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 `;
 
 const SessionSumary = styled.div`

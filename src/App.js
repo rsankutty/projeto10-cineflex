@@ -1,6 +1,7 @@
 import GlobalStyle from "./style/globalStyles";
 import HomePage from "./components/HomePage/Home";
 import SessionPage from "./components/SessionPage/Session";
+import SeatPage from "./components/SeatPage/Seat";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 
@@ -19,13 +20,17 @@ function App() {
           path="/sessoes/:idFilme"
           element={<SessionPage />}
         />
+        <Route
+          path="/assentos/:idSessao"
+          element={<SeatPage />}
+        />
       </Routes>
     </BrowserRouter>
   );
 }
 
 const Header = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 67px;
   margin: 0px;
   display: flex;
@@ -35,6 +40,7 @@ const Header = styled.div`
   font-size: 34px;
   position: fixed;
   background-color: #C3CFD9;
+  font-family: 'Roboto', sans-serif;
 `;
 
 

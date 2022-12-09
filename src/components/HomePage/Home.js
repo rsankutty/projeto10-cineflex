@@ -18,5 +18,6 @@ const ScreenContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 200px;
+  font-family: 'Roboto', sans-serif;
 `;
 

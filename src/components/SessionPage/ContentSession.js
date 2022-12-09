@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-export default function ContentSession({movieSession, setMovieSession}) {
+export default function ContentSession({ movieSession, setMovieSession }) {
 
   return (
     <Content>
@@ -13,7 +14,9 @@ export default function ContentSession({movieSession, setMovieSession}) {
             </p>
             <ButtonContainer>
               {elem.showtimes.map((item) => (
-                <button key={item.id}>{item.name}</button>
+                <Link key={item.id} to={`/assentos/${item.id}`}>
+                  <button key={item.id}>{item.name}</button>
+                </Link>
               ))}
             </ButtonContainer>
           </Session>
