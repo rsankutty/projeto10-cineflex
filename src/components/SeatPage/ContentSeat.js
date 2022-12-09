@@ -4,15 +4,17 @@ import { useState } from "react";
 export default function ContentSeat({ seats }) {
 
 
-  function SeatButton({ name,isAvailable }) {
+  function SeatButton({ name, isAvailable }) {
     const [statusColor, setStatusColor] = useState('#C3CFD9');
+    const [borderColor, setBorderColor] = useState('#808F9D');
 
     function chooseSeat() {
       setStatusColor('#1AAE9E')
+      setBorderColor('#0E7D71')
     }
 
     return (
-      <Seat onClick={() => { chooseSeat() }} color={ isAvailable?statusColor:'#FBE192'}>
+      <Seat onClick={() => { chooseSeat() }} borderColor={isAvailable ? borderColor : '#F7C52B'} color={isAvailable ? statusColor : '#FBE192'}>
         {name}
       </Seat>
     )
@@ -25,20 +27,20 @@ export default function ContentSeat({ seats }) {
       <Wrapper>
         <SeatsContainer>
           {seats.map((elem) => (
-            <SeatButton key={elem.id} name={elem.name} isAvailable={elem.isAvailable}/>
+            <SeatButton key={elem.id} name={elem.name} isAvailable={elem.isAvailable} />
           ))}
         </SeatsContainer>
         <Legenda>
           <ItemLegenda>
-            <Seat color={'#1AAE9E'}></Seat>
+            <Seat borderColor={'#0E7D71'} color={'#1AAE9E'}></Seat>
             <p>Selecionado</p>
           </ItemLegenda>
           <ItemLegenda>
-            <Seat color={'#C3CFD9'}></Seat>
+            <Seat borderColor={'#808F9D'} color={'#C3CFD9'}></Seat>
             <p>Disponível</p>
           </ItemLegenda>
           <ItemLegenda>
-            <Seat color={'#FBE192'}></Seat>
+            <Seat borderColor={'#F7C52B'} color={'#FBE192'}></Seat>
             <p>Indisponível</p>
           </ItemLegenda>
         </Legenda>
@@ -80,6 +82,7 @@ const SeatsContainer = styled.div`
   display: flex;
   margin-left: 20px;
   margin-right: 20px;
+  width: 365px;
   flex-wrap: wrap;
   justify-content: center;
   gap: 8px;
@@ -92,7 +95,7 @@ const Seat = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #808F9D;
+  border: 1px solid ${props => props.borderColor};
   border-radius: 12px;
   background-color: ${props => props.color};
 `;

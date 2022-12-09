@@ -1,46 +1,42 @@
 import styled from "styled-components";
+import ContentSession from "./ContentSession";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import ContentSeat from "./ContentSeat";
 
+export default function SessionPage() {
+  const [movieSession, setMovieSession] = useState([]);
+  const [movieInfo, setMovieInfo] = useState("");
 
-export default function SeatPage() {
-  const [moviesInfo, setMoviesInfo] = useState([]);
-  const [seats, setSeats] = useState([]);
-
-  const { idSessao } = useParams();
+  const { idFilme } = useParams();
 
   useEffect(() => {
     const requisicao = axios.get(
-      `https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${idSessao}/seats`
+      `https://mock-api.driven.com.br/api/v8/cineflex/movies/${idFilme}/showtimes`
     );
 
     requisicao.then((resposta) => {
-      setMoviesInfo(resposta.data)
-      setSeats(resposta.data.seats);
+      setMovieInfo(resposta.data);
+      setMovieSession(resposta.data.days);
       console.log(resposta.data);
     });
-  }, [idSessao]);
+  }, [idFilme]);
 
-  if (seats.length === 0) {
+  if (movieSession.length === 0) {
     return <ContentLoading>Carregando Dados...</ContentLoading>;
   }
 
   return (
     <ScreenContainer>
-      <ContentSeat seats={seats} />
+      <ContentSession movieSession={movieSession} setMovieSession={setMovieSession}/>
       <Footer>
         <SessionSumary>
           <img
-            src={moviesInfo.movie.posterURL}
+            src={movieInfo.posterURL}
             alt=""
           />
         </SessionSumary>
-        <PContainer>
-          <p>{moviesInfo.movie.title}</p>
-          <p>{`${moviesInfo.day.weekday} - ${moviesInfo.name}`}</p>
-        </PContainer>
+        <p>{movieInfo.title}</p>
       </Footer>
     </ScreenContainer>
   );
@@ -67,7 +63,6 @@ const ContentLoading = styled.div`
 const Footer = styled.div`
   width: 100%;
   height: 117px;
-  margin: 0px;
   display: flex;
   gap: 15px;
   align-items: center;
@@ -75,18 +70,13 @@ const Footer = styled.div`
   font-size: 34px;
   position: fixed;
   bottom: 0px;
+  left: 0px;
   background-color: #dfe6ed;
   border: 1px solid #9eadba;
   p {
     font-size: 26px;
     color: #293845;
   }
-`;
-
-const PContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
 `;
 
 const SessionSumary = styled.div`
