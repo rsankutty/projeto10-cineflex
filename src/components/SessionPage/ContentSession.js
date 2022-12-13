@@ -8,14 +8,14 @@ export default function ContentSession({ movieSession, setMovieSession }) {
       <Instruction>Selecione um horário</Instruction>
       <SessionContainer>
         {movieSession.map((elem) => (
-          <Session key={elem.id}>
+          <Session key={elem.id} data-test="movie-day" >
             <p>
               {elem.weekday} - {elem.date}
             </p>
             <ButtonContainer>
               {elem.showtimes.map((item) => (
                 <Link key={item.id} to={`/assentos/${item.id}`}>
-                  <button key={item.id}>{item.name}</button>
+                  <button data-test="showtime" key={item.id}>{item.name}</button>
                 </Link>
               ))}
             </ButtonContainer>

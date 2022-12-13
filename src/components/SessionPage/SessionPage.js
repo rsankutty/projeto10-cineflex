@@ -29,7 +29,7 @@ export default function SessionPage() {
   return (
     <ScreenContainer>
       <ContentSession movieSession={movieSession} setMovieSession={setMovieSession}/>
-      <Footer>
+      <Footer data-test="footer">
         <SessionSumary>
           <img
             src={movieInfo.posterURL}

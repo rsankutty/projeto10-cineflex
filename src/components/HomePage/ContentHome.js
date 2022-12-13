@@ -28,7 +28,7 @@ export default function ContentHome() {
       <MoviesContainer>
         {moviesInfo.map((elem) => (
           <Link key={elem.id} to={`/sessoes/${elem.id}`}>
-            <Movie >
+            <Movie  data-test="movie">
               <img src={elem.posterURL} alt="" />
             </Movie>
           </Link>

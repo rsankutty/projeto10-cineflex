@@ -67,7 +67,7 @@ export default function ContentSeat({ seats,setIngressos,setComprador}) {
       <Wrapper>
         <SeatsContainer>
           {seats.map((elem) => (
-            <SeatButton key={elem.id} id={elem.id} name={elem.name} isAvailable={elem.isAvailable} />
+            <SeatButton data-test="seat" key={elem.id} id={elem.id} name={elem.name} isAvailable={elem.isAvailable} />
           ))}
         </SeatsContainer>
 
@@ -89,13 +89,13 @@ export default function ContentSeat({ seats,setIngressos,setComprador}) {
         <InputContainer>
           <form onSubmit={enviarDados} >
             <label htmlFor="name">Nome do comprador:</label>
-            <input id="name" required type="text" placeholder="Digite seu nome"  onChange={e => name = e.target.value} >
+            <input data-test="client-name" id="name" required type="text" placeholder="Digite seu nome"  onChange={e => name = e.target.value} >
             </input>
             <label htmlFor="cpf">CPF do comprador:</label>
-            <input id="cpf" required type="text" placeholder="Digite seu CPF" onChange={e => cpf = e.target.value} >
+            <input data-test="client-cpf" id="cpf" required type="text" placeholder="Digite seu CPF" onChange={e => cpf = e.target.value} >
             </input>
             <ButtonContainer>
-              <button>Reservar assento(s)</button>
+              <button data-test="book-seat-btn" >Reservar assento(s)</button>
             </ButtonContainer>
           </form>
         </InputContainer>

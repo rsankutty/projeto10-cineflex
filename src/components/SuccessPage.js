@@ -18,29 +18,28 @@ export default function SuccessPage(
   }
 
 
-
   return (
     <Content>
       <Cabecalho>Pedido feito com sucesso!</Cabecalho>
       <ResumoContainer>
-        <ItemResumo>
+        <ItemResumo data-test="movie-info" >
           <h1>Filme e Sessão</h1>
           <p>{filme}</p>
           <p>{sessao}</p>
         </ItemResumo>
-        <ItemResumo>
+        <ItemResumo  data-test="seats-info">
           <h1>Ingressos</h1>
           {ingressos.map(item => <p key={item}>Assento {item}</p>)}
           {/* <p>Assento 15</p>
           <p>Assento 16</p> */}
         </ItemResumo>
-        <ItemResumo>
+        <ItemResumo data-test="client-info">
           <h1>Comprador</h1>
           <p>Nome: {comprador[0]}</p>
           <p>CPF: {comprador[1]}</p>
         </ItemResumo>
       </ResumoContainer>
-      <RetornoButton onClick={() => navigate('/')}>Voltar pra Home</RetornoButton>
+      <RetornoButton data-test="go-home-btn" onClick={() => navigate('/')}>Voltar pra Home</RetornoButton>
     </Content>
   )
 }

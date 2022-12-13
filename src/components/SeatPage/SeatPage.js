@@ -36,7 +36,7 @@ export default function SeatPage({
   return (
     <ScreenContainer>
       <ContentSeat seats={seats} setIngressos={setIngressos} setComprador={setComprador}/>
-      <Footer>
+      <Footer data-test="footer">
         <SessionSumary>
           <img
             src={moviesInfo.movie.posterURL}
