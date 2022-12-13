@@ -47,6 +47,7 @@ export default function ContentSeat({ seats,setIngressos,setComprador}) {
           setStatusColor('#C3CFD9')
           setBorderColor('#808F9D')
           ids.splice(ids.indexOf(id), 1)
+          assentos.splice(assentos.indexOf(name), 1)
         }
         console.log(ids)
         console.log(assentos)
