@@ -54,7 +54,7 @@ export default function ContentSeat({ seats,setIngressos,setComprador}) {
     }
 
     return (
-      <Seat onClick={() => { chooseSeat() }} borderColor={isAvailable ? borderColor : '#F7C52B'} color={isAvailable ? statusColor : '#FBE192'}>
+      <Seat data-test="seat" onClick={() => { chooseSeat() }} borderColor={isAvailable ? borderColor : '#F7C52B'} color={isAvailable ? statusColor : '#FBE192'}>
         {name}
       </Seat>
     )
@@ -67,7 +67,7 @@ export default function ContentSeat({ seats,setIngressos,setComprador}) {
       <Wrapper>
         <SeatsContainer>
           {seats.map((elem) => (
-            <SeatButton data-test="seat" key={elem.id} id={elem.id} name={elem.name} isAvailable={elem.isAvailable} />
+            <SeatButton key={elem.id} id={elem.id} name={elem.name} isAvailable={elem.isAvailable} />
           ))}
         </SeatsContainer>
 
