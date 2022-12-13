@@ -5,7 +5,12 @@ import { useParams } from "react-router-dom";
 import ContentSeat from "./ContentSeat";
 
 
-export default function SeatPage() {
+export default function SeatPage({ 
+  setFilme,
+  setSessao,
+  setIngressos,
+  setComprador }) 
+  {
   const [moviesInfo, setMoviesInfo] = useState([]);
   const [seats, setSeats] = useState([]);
 
@@ -19,9 +24,10 @@ export default function SeatPage() {
     requisicao.then((resposta) => {
       setMoviesInfo(resposta.data)
       setSeats(resposta.data.seats);
-      console.log(resposta.data);
+      setFilme(resposta.data.movie.title)
+      setSessao(`${resposta.data.day.date} ${resposta.data.name}`)
     });
-  }, [idSessao]);
+  }, [idSessao,setFilme,setSessao]);
 
   if (seats.length === 0) {
     return <ContentLoading>Carregando Dados...</ContentLoading>;
@@ -29,7 +35,7 @@ export default function SeatPage() {
 
   return (
     <ScreenContainer>
-      <ContentSeat seats={seats} />
+      <ContentSeat seats={seats} setIngressos={setIngressos} setComprador={setComprador}/>
       <Footer>
         <SessionSumary>
           <img

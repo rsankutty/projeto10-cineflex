@@ -4,10 +4,11 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom"
 
 
-export default function ContentSeat({ seats }) {
+export default function ContentSeat({ seats,setIngressos,setComprador}) {
   let name = ""
   let cpf=""
   const ids = []
+  const assentos = []
   const navigate = useNavigate()
 
   function enviarDados(event) {
@@ -19,8 +20,10 @@ export default function ContentSeat({ seats }) {
       name: name,
       cpf: cpf
     })
-  
-    requisicao.then(() => navigate("/")) 
+    
+    setIngressos(assentos)
+    setComprador([name,cpf])
+    requisicao.then(() => navigate("/sucesso")) 
   }
 
   function SeatButton({ id, name, isAvailable }) {
@@ -37,6 +40,7 @@ export default function ContentSeat({ seats }) {
           setStatusColor('#1AAE9E')
           setBorderColor('#0E7D71')
           ids.push(id)
+          assentos.push(name)
 
         } else if (seatStatus === 'selected') {
           setSeatStatus('available')
@@ -45,6 +49,7 @@ export default function ContentSeat({ seats }) {
           ids.splice(ids.indexOf(id), 1)
         }
         console.log(ids)
+        console.log(assentos)
       }
     }
 
